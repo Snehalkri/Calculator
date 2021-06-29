@@ -1,0 +1,164 @@
+<html>
+<head>
+<style>
+        .container{margin: auto;
+         padding: 90px;
+         }
+         input[type="button"]
+         { 
+         border-radius: 4px;
+         color: black;
+         padding: 4px;
+         border: solid gainsboro 1px;
+         height: 60px;
+         width:100%;
+         font-weight: 300;
+         }
+  
+         input[type="text"]
+         {
+          background-color:white;
+          width: 70px;
+          height: 60px;
+          border: 0;
+          width:100%;
+         font-weight: 300;
+          
+         }
+          table{border-collapse: collapse;
+           border: solid grey 1px;
+          border-width: thin;
+          }
+          #ac{background-color: #F0595F;
+          color: white;}    
+          
+       table.center {
+        margin-left: auto; 
+        margin-right: auto;}
+     
+       input[type="button"]:hover {background-color: #D6D6D6;
+           border: solid grey 1px;
+       
+    }
+  
+        #result{
+        height: 60px;
+        font-size: 24px;
+        width: 100%;
+        color: white;
+        border: 0;
+        background-color: black;
+        text-align: right;
+        }
+        #equal{background-color: #2E86C0;
+               border: 0;
+               color: white;}
+        table{border-collapse: separate;
+        border-spacing: 10px 10px;}
+      </style> 
+    
+<script>
+var num=0,dot=0,lcd=0,operator=0;/*p1:num, p2-dot,p3-lcd,p4-opertor*/
+function dis(n)
+{
+if(lcd==0){
+    
+    document.getElementById("result").value+=n;
+}
+else
+{
+document.getElementById("result").value=n;
+}
+num=0;lcd=0;operator=1;
+}
+   
+function opr(x)
+{
+    
+	if(operator==1)
+	{
+		if(num==0)
+		{
+		document.getElementById("result").value+=x;
+		num=1;dot=0;
+		}
+		else
+		{
+		del();
+		document.getElementById("result").value+=x;
+		}
+		lcd=0;
+	}
+	else
+	{
+		if(x=='+'||x=='-'||x=='*'||x=='/')
+		{
+		document.getElementById("result").value=x;
+		}
+	}
+}
+
+function dot(y)
+{
+	if(dot==0)
+	{
+	document.getElementById("result").value+=y;
+	dot=1;num=1;
+	}
+}
+
+function calc()
+{	
+var s=document.getElementById("result").value;
+var t=eval(s);
+document.getElementById("result").value=t;
+lcd=1;
+}
+function clr()
+{
+  document.getElementById("result").value = ""
+}
+</script>
+</head>
+<body>
+    <div class="container">
+    
+    <table class="center">
+         <tr>
+            <td colspan="4" style="color:#252525;"><input type="text" id="result"/></td>           
+         </tr>
+         <tr>
+             <td style="width: 50px;color: dodgerblue;"><input type="button" value="+" onclick="opr('+')"/> </td>
+             <td style="width: 50px;color: dodgerblue;"><input type="button" value="-" onclick="opr('-')"/> </td>
+             <td style="width: 50px;color: dodgerblue;"><input type="button" value="*" onclick="opr('*')"/> </td>
+             <td style="width: 50px;color: dodgerblue;"><input type="button" value="/" onclick="opr('/')"/> </td>  
+            
+         </tr>
+          <tr>
+            <td><input type="button" value="7" onclick="dis('7')"/> </td>
+            <td><input type="button" value="8" onclick="dis('8')"/> </td>
+            <td><input type="button" value="9" onclick="dis('9')"/> </td>
+            <td rowspan="4" style="border: 0px;background-color: #2E86C0;color: white;border-radius: 4px;"><input type="button" value="="  id="equal" onclick="calc()"/> </td>
+          </tr>
+         <tr>
+            <td><input type="button" value="4" onclick="dis('4')"/> </td>
+            <td><input type="button" value="5" onclick="dis('5')"/> </td>
+            <td><input type="button" value="6" onclick="dis('6')"/> </td>
+            
+         </tr>
+         <tr>
+             <td><input type="button" value="1" onclick="dis('1')"/> </td>
+            <td><input type="button" value="2" onclick="dis('2')"/> </td>
+            <td><input type="button" value="3" onclick="dis('3')"/> </td> 
+         </tr>
+         <tr>
+            <td><input type="button" value="0" onclick="dis('0')"/> </td>
+             <td><input type="button" value="." onclick="dot('.')"/> </td>
+             <td style="background-color: #F0595F;color: white;border-radius: 4px;border: 0px;"><input type="button" value="AC" id="ac" onclick="clr()"/> </td>    
+         </tr>
+      </table>
+    
+    </div>
+    
+    </body>
+</html>
